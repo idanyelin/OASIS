@@ -67,7 +67,7 @@ class AnnotatedGenome:
         for seq_record in seqlist:
             #find all transposase genes
             thislist = [f for f in seq_record.features if f.type == "CDS"
-                            and 'locus_tag' in f.qualifiers]
+                            and 'locus_tag' in f.qualifiers and not f.location_operator == 'join']
             for f in thislist:
                 self.namedict[f.qualifiers['locus_tag'][0]] = seq_record.id
             if annotated:
